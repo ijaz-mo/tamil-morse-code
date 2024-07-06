@@ -8,29 +8,30 @@ This project provides a Flask server and a command-line interface for converting
 
 1. Install dependencies:
 
-   ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip3 install -r requirements.txt
-  ```
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
 
 ## Client Mode: Use the command-line interface
 
-    ```bash
-    # Convert tamil sentence to morse code
-    python cli.py "அனைவருக்கும் வணக்கம்"
+```bash
+# Convert tamil sentence to morse code
+python cli.py "அனைவருக்கும் வணக்கம்"
+```
 
-    ```bash
-    # Convert morse code to tamil sentence
-    python cli.py -m morse_to_tamil ".- -. .- .. ...- .-. ..- -.-. .... ..- -- .- ..-. .-. ..- ..-. ...- .- -. .- -.-. .... -.-. --- --"
-    ```
+```bash
+# Convert morse code to tamil sentence
+python cli.py -m morse_to_tamil ".- -. .- .. ...- .-. ..- -.-. .... ..- -- .- ..-. .-. ..- ..-. ...- .- -. .- -.-. .... -.-. --- --"
+```
 
 
 ## Server Mode: Run the Flask server
 
-    ```bash
-    python server.py
-    ```
+```bash
+python server.py
+```
 
 **API Endpoints**
 
