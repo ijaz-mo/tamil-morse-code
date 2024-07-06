@@ -1,44 +1,55 @@
-# Morse code for Tamil langauge
+# Tamil Morse Code
 
-Morse code for Tamil vowels and consonants involves mapping each character to a sequence of dots and dashes. 
-Here's a simplified approach to represent Tamil vowels and consonants in Morse code:
+To view detailed mappings of Tamil letters and their corresponding Morse code representations, please refer to the [`morse_tamil_mappings.md`](./morse_tamil_mappings.md) file located within this repository.
 
-### Tamil Vowels:
+This project provides a Flask server and a command-line interface for converting between Tamil text and Morse code.
 
-Tamil vowels are represented with shorter sequences to maintain efficiency in communication.
+## Setup
 
-- **அ** (A): .-
-- **ஆ** (AA): .-.
-- **இ** (I): ..
-- **ஈ** (EE): ..-
-- **உ** (U): ...
-- **ஊ** (OO): ...-
-- **எ** (E): .-..
-- **ஏ** (EE): .--.
-- **ஐ** (AI): .-..
-- **ஒ** (O): -..
-- **ஓ** (OO): -..-
-- **ஔ** (AU): -.-.
+1. Install dependencies:
 
-### Tamil Consonants:
+   ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    pip3 install -r requirements.txt
+  ```
 
-Tamil consonants are represented with longer sequences compared to vowels.
+## Client Mode: Use the command-line interface
 
-- **க** (KA): -.-.
-- **ங** (NGA): --.
-- **ச** (CHA): -..-
-- **ஞ** (NYA): -.--.
-- **ட** (ṬA): -..-
-- **ண** (ṆA): -...-
-- **த** (TA): -.
-- **ந** (NA): -..
-- **ப** (PA): .--.
-- **ம** (MA): --
-- **ய** (YA): --..
-- **ர** (RA): .-.
-- **ல** (LA): ..-.
-- **வ** (VA): ...-
-- **ழ** (ḻA): ..-..
-- **ள** (ḷA): ..-..
-- **ற** (ṟA): .-..
-- **ன** (ṉA): -.
+    ```bash
+    # Convert tamil sentence to morse code
+    python cli.py "அனைவருக்கும் வணக்கம்"
+
+    ```bash
+    # Convert morse code to tamil sentence
+    python cli.py -m morse_to_tamil ".- -. .- .. ...- .-. ..- -.-. .... ..- -- .- ..-. .-. ..- ..-. ...- .- -. .- -.-. .... -.-. --- --"
+    ```
+
+
+## Server Mode: Run the Flask server
+
+    ```bash
+    python server.py
+    ```
+
+**API Endpoints**
+
+- `/tamil_to_morse`: Convert Tamil text to Morse code
+
+  - Method: POST
+  - Payload: `{ "tamil_text": "அனைவருக்கும் வணக்கம்" }`
+  - Response: `{ "morse_code": "... --- -- . -- --- .-. ... . -.-. --- -.. ." }`
+
+    ```bash
+    curl -X POST http://127.0.0.1:5000/tamil_to_morse -H "Content-Type: application/json" -d '{"tamil_text": "அனைவருக்கும் வணக்கம்"}'
+    ```
+
+- `/morse_to_tamil`: Convert Morse code to Tamil text
+
+  - Method: POST
+  - Payload: `{ "morse_code": "... --- -- . -- --- .-. ... . -.-. --- -.. ." }`
+  - Response: `{ "tamil_text": "அனைவருக்கும் வணக்கம்" }`
+
+    ```bash
+    curl -X POST http://127.0.0.1:5000/morse_to_tamil -H "Content-Type: application/json" -d '{"morse_code": ".- -. .- .. ...- .-. ..- -.-. .... ..- -- .- ..-. .-. ..- ..-. ...- .- -. .- -.-. .... -.-. --- --"}'
+    ```
